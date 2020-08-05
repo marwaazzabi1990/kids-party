@@ -1,0 +1,12 @@
+.menus {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 100px;
+  width: 1000px;
+
+  flex-wrap: nowrap;
+}
+.img-lg {
+  width: 100px;
+}
