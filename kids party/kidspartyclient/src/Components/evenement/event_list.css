@@ -6,5 +6,29 @@
 .flexselect {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+.pos_card {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
   justify-content: space-around;
+}
+/*.carrousel_style {
+  height: 200px;
+}*/
+.image-slider {
+  height: 350px;
+  width: 100%;
+}
+.input-search {
+  border-radius: 5px;
+  border: 1px solid gray;
+  background-color: transparent;
+}
+.option_region {
+  height: 30px;
+  border: 1px solid gray;
+  background-color: transparent;
 }

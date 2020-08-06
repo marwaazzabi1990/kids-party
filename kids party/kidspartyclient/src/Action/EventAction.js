@@ -13,8 +13,9 @@ export const getAllevents = (payload) => ({
 });
 export function getEventsFromApi() {
     return (dispatch) =>
-        Axios.get("localhost").then(
+        Axios.get("http://localhost:3001/Evenement").then(
             (res) => {
+                console.log('ee' + res.date)
                 dispatch(getAllevents(res.data));
             }
         );

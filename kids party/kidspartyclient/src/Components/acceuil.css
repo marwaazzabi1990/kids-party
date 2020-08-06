@@ -6,7 +6,8 @@
   width: 1000px;
 
   flex-wrap: nowrap;
+  margin-top: 20px;
 }
 .img-lg {
-  width: 100px;
+  width: 150px;
 }
