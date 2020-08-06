@@ -19,6 +19,11 @@ var newArray = [];
 
 
 class Event_list extends Component {
+    state = {
+        Categorie: "",
+        Adresse: ""
+
+    }
     componentDidMount() {
         this.props.getAllEvents();
         this.props.getAllCategorie();
@@ -76,7 +81,9 @@ class Event_list extends Component {
                     <div >
 
 
-                        <Form.Control as="select"  >
+                        <select onChange={(e) =>
+                            this.setState({ Adresse: (e.target.value) })
+                        }  >
 
 
 
@@ -102,7 +109,7 @@ class Event_list extends Component {
                             <option value="Kairouan">Kairouan</option>
                             <option value="Tataouine">Tataouine</option>
                             <option value="El Jem">El Jem</option>
-                        </Form.Control>
+                        </select>
 
 
                     </div>
@@ -111,12 +118,18 @@ class Event_list extends Component {
 
 
                     <div>
-                        <Form.Control as="select"  >
+                        <select
+                            onChange={(e) =>
+                                this.setState({ Categorie: (e.target.value) })
+                            }
+                            name="pets"
+                            id="Quantity-select"
+                        >
                             <option value="">Categorie</option>
                             {categorie.map((el) => (
                                 <option value={el}>{el}</option>
                             ))}
-                        </Form.Control>
+                        </select>
                     </div>
                 </div>
 
@@ -125,24 +138,32 @@ class Event_list extends Component {
                 <div className="pos_card">
 
 
-                    {event.map((el, i) => (
-                        <MDBCol >
-                            <MDBCard>
-                                <MDBCardImage className="img-fluid" src={el.affiche}
-                                    waves />
-                                <MDBCardBody>
-                                    <MDBCardTitle>{el.titre}</MDBCardTitle>
-                                    <MDBCardText>{el.Adresse}</MDBCardText>
+                    {event
+                        .filter((elcategorie) =>
+                            this.state.Categorie === "" ? elcategorie : elcategorie.nom_categorie === this.state.Categorie
+                        ).filter((eladresse) =>
+                            this.state.Adresse === "" ? eladresse : eladresse.Adresse === this.state.Adresse
 
-                                    <MDBCardText>{el.nombre_de_participant} <FaUsers /></MDBCardText>
-                                    {/*< ModalDetail el={el} />*/}
-                                </MDBCardBody>
+                        )
+                        .map((el, i) => (
+                            <MDBCol >
+                                <MDBCard className="card-style">
+                                    <MDBCardImage className="image_card" src={el.affiche}
+                                        waves />
+                                    <MDBCardBody>
+                                        <MDBCardTitle>{el.titre}</MDBCardTitle>
+                                        <MDBCardText>{el.Adresse}</MDBCardText>
+                                        <MDBCardText>  {el.nom_categorie}</MDBCardText>
 
-                            </MDBCard>
+                                        <MDBCardText>{el.nombre_de_participant} <FaUsers /></MDBCardText>
+                                        {/*< ModalDetail el={el} />*/}
+                                    </MDBCardBody>
 
-                        </MDBCol>
+                                </MDBCard>
 
-                    ))}</div >
+                            </MDBCol>
+
+                        ))}</div >
 
             </div >
         )
