@@ -21,7 +21,8 @@ var newArray = [];
 class Event_list extends Component {
     state = {
         Categorie: "",
-        Adresse: ""
+        Adresse: "",
+        titre: "",
 
     }
     componentDidMount() {
@@ -29,6 +30,15 @@ class Event_list extends Component {
         this.props.getAllCategorie();
 
     }
+    filter = (e) => {
+
+        let input = e.target.value;
+
+        this.setState({ titre: input });
+
+
+        console.log(this.state.titre);
+    };
     distinctDoubleCategorie = () => {
         let ArrayOfCategorie = [];
         console.log("categorie is :" + this.props.categorie)
@@ -70,14 +80,16 @@ class Event_list extends Component {
                     <div>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
-                                <InputGroup.Text id="basic-addon1"><FaSearch /></InputGroup.Text>
+                                <InputGroup.Text id="basic-addon1" ><FaSearch /></InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl
-                                placeholder="Search"
-
+                            <input onChange={(e) => this.filter(e)}
+                                placeholder="Rechercher  "
                                 aria-describedby="basic-addon1"
                             />
-                        </InputGroup>  </div>
+                        </InputGroup>
+
+
+                    </div>
                     <div >
 
 
@@ -144,6 +156,8 @@ class Event_list extends Component {
                         ).filter((eladresse) =>
                             this.state.Adresse === "" ? eladresse : eladresse.Adresse === this.state.Adresse
 
+                        ).filter((eltitre) =>
+                            this.state.titre === "" ? eltitre : eltitre.titre.includes(this.state.titre)
                         )
                         .map((el, i) => (
                             <MDBCol >
